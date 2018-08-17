@@ -1,23 +1,50 @@
 package main.java.model;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+//import org.codehaus.jackson.annotate.JsonProperty;
 
-import javax.ws.rs.Produces;
-import javax.xml.bind.annotation.XmlRootElement;
+//import javax.ws.rs.Produces;
+//import javax.xml.bind.annotation.XmlRootElement;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
+
 import java.util.Date;
 
 /**
  * Created by user on 12/04/2018.
  */
 public class Product {
+    private MongoCollection<Document> products;
 
-    @JsonProperty
+    public Product(MongoDatabase database) {
+        // connect to DB collection: users
+        products = database.getCollection("products");
+
+    }
+
+    public getProduct(int barcode){
+        // if not in DB search in out api
+        // return product
+    }
+
+    public setProduct(int jsonProduct){
+        // get json and store it in DB
+        // json not int **
+
+    }
+
+}
+
+
+// check if we need something from here
+/*
+    //@JsonProperty
     private int serialNumber;
-    @JsonProperty
+    //@JsonProperty
     private String productName;
-    @JsonProperty
+    //@JsonProperty
     private Date date;
-    @JsonProperty
+    //@JsonProperty
     private int count = 1;
 
     public int getCount() {
@@ -54,4 +81,4 @@ public class Product {
     }
 
 
-}
+*/

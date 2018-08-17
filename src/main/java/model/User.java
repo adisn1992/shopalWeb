@@ -14,6 +14,8 @@ import java.util.Collections;
 
 import static com.mongodb.client.model.Filters.eq;
 
+//import com.google.api.client.json.jackson2.JacksonFactory;
+
 /**
  * Created by user on 14/04/2018.
  */
@@ -42,7 +44,7 @@ public class User {
             // verify and create Payload
             GoogleIdToken idToken = verifier.verify(idTokenString);
             Payload payload = idToken.getPayload();
-            String userId = payload.getSubject();
+            String userId = payload.getUserId();
 
             if (!is_userId_existInDB(userId)) {
                 addUser(payload); // new user
@@ -56,11 +58,13 @@ public class User {
     /**
      * Private:
      **/
+
     private void addUser(Payload payload) {
         // Get profile information from payload
         String email = payload.getEmail();
-        String userId = payload.getSubject();
+        String userId = payload.getUserId();
         //// boolean emailVerified = Boolean.valueOf(payload.getEmailVerified()); // TODO check for what
+
         String name = (String) payload.get("name");
         String familyName = (String) payload.get("family_name");
         String givenName = (String) payload.get("given_name");
@@ -74,6 +78,7 @@ public class User {
                 .append("pictureUrl", pictureUrl)
                 .append("stockId", "NO STOCKS")
         );
+
     }
 
 
