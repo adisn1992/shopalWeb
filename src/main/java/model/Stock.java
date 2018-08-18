@@ -5,12 +5,15 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import java.util.Iterator;
 
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Projections.*;
 
+@Path("/product")
 public class Stock{
     private MongoCollection<Document> stocks;
 
@@ -20,8 +23,11 @@ public class Stock{
         stocks = database.getCollection("stocks");
     }
 
+    @POST
+    @Path("/addProduct/{stockId}/{productId}")
+    @Consumes(MediaType.APPLICATION_JSON)
     // Add a new product to user's "stock" | UI: no need to update shopList (limit = 0)
-    public void addProduct(String stockId, String productId) throws Exception {
+    public void addProduct(@PathParam("stockId") String stockId, @PathParam("productId") String productId) throws Exception {
 
         if (!is_stockId_existInDB(stockId)) {
             throw new Exception("Invalid stock"); // stock not exist in DB

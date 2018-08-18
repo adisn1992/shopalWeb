@@ -8,11 +8,13 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
-import java.util.Date;
+import javax.ws.rs.Path;
 
 /**
  * Created by user on 12/04/2018.
  */
+
+@Path("/product")
 public class Product {
     private MongoCollection<Document> products;
 
@@ -22,12 +24,12 @@ public class Product {
 
     }
 
-    public getProduct(int barcode){
+    public void getProduct(int barcode){
         // if not in DB search in out api
         // return product
     }
 
-    public setProduct(int jsonProduct){
+    public void setProduct(int jsonProduct){
         // get json and store it in DB
         // json not int **
 
@@ -51,8 +53,10 @@ public class Product {
         return count;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public setProduct(int jsonProduct){
+        // get json and store it in DB
+        // json not int **
+
     }
 
     public int getSerialNumber() {

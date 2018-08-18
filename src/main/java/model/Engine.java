@@ -48,7 +48,7 @@ public class Engine {
 
         // EXP
         //productScan("1", "1");
-        users.connectUser("abc");
+        //users.connectUser("abc");
         //stocks.updateProduct("1", "5", "3", "99");
         //stocks.addProduct("1", "33");
         // END EXP

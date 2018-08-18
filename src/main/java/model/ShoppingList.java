@@ -1,13 +1,18 @@
 package main.java.model;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import javax.ws.rs.Path;
 
 /**
  * Created by user on 12/04/2018.
  */
+@Path("/product")
 public class ShoppingList {
+
+
+
+}
+
+    /*
     List<Product> shoppingList = new ArrayList<>();
 
 
@@ -47,3 +52,4 @@ public class ShoppingList {
 
 
 }
+*/

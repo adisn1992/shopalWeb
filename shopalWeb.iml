@@ -47,5 +47,16 @@
         <jarDirectory url="file://$MODULE_DIR$/dependencies/google-api" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/dependencies/javax.ws.rs.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/dependencies/javax.ws.rs.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>
