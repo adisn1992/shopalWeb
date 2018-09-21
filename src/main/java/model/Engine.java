@@ -4,6 +4,7 @@ package main.java.model;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.*;
+import main.java.resources.Stock;
 
 /**
  * Created by user on 12/04/2018.
@@ -33,7 +34,7 @@ import com.mongodb.client.*;
 //////////////////////////////////////////////////
 
 public class Engine {
-    MongoDatabase database;
+    MongoDatabase a;
     Stock stocks;
     User users;
 
@@ -41,9 +42,9 @@ public class Engine {
         // Connection to mongoDB
         MongoClient mongoClient = new MongoClient("Localhost", 27017);
         // Access to shopalDB
-        database = mongoClient.getDatabase("shopal");
-        stocks = new Stock(database);
-        users = new User(database);
+        a = mongoClient.getDatabase("shopal");
+        stocks = new Stock();
+        users = new User(a);
 
 
         // EXP

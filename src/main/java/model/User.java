@@ -78,7 +78,6 @@ public class User {
                 .append("pictureUrl", pictureUrl)
                 .append("stockId", "NO STOCKS")
         );
-
     }
 
 

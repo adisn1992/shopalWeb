@@ -1,5 +1,9 @@
 package main.java.resources;
 
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoDatabase;
+import main.java.model.User;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -12,6 +16,22 @@ import javax.ws.rs.core.MediaType;
 
 @Path("/shopal")
 public class Controller {
+
+
+
+    public Controller() {
+        // Connection to mongoDB
+        //MongoClient mongoClient = new MongoClient("Localhost", 27017);
+        // Access to shopalDB
+
+
+        // EXP
+        //productScan("1", "1");
+        //users.connectUser("abc");
+        //stocks.updateProduct("1", "5", "3", "99");
+        //stocks.addProduct("1", "33");
+        // END EXP
+    }
 
     @GET
     @Path("/product/{barcode}")
