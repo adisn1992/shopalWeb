@@ -1,34 +1,47 @@
 package main.java.model;
 
-//import org.codehaus.jackson.annotate.JsonProperty;
-
-//import javax.ws.rs.Produces;
-//import javax.xml.bind.annotation.XmlRootElement;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
-
-import javax.ws.rs.Path;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.MongoClient;
 
 /**
  * Created by user on 12/04/2018.
  */
 
-@Path("/product")
+
 public class Product {
-    private MongoCollection<Document> products;
+    // should be one instance of Product class and stocks collection
+    private static Product ourInstance = new Product();
+    private static DBCollection products;
 
-    public Product(MongoDatabase database) {
-        // connect to DB collection: users
+    /** Public: **/
+    public Product()
+    {
+        // connect to mongo
+        MongoClient mongoClient = new MongoClient("Localhost", 27017);
+        // get DB
+        DB database = mongoClient.getDB("shopal");
+        // get collection
         products = database.getCollection("products");
-
     }
 
+    public static Product getInstanceClass() {
+        return ourInstance;
+    }
+
+    public static DBCollection getInstanceCollection() {
+        return ourInstance.products;
+    }
+
+    /** Private: **/
+
+    // adi:
     public void getProduct(int barcode){
         // if not in DB search in out api
         // return product
     }
 
+    // adi:
     public void setProduct(int jsonProduct){
         // get json and store it in DB
         // json not int **

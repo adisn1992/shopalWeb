@@ -4,7 +4,6 @@ package main.java.model;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.*;
-import main.java.resources.Stock;
 
 /**
  * Created by user on 12/04/2018.

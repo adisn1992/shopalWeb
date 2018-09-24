@@ -62,5 +62,6 @@
     <orderEntry type="library" name="jsr311-api-1.1.1 (1)" level="project" />
     <orderEntry type="library" name="jersey-bundle-1.19.1" level="project" />
     <orderEntry type="library" name="commons-logging-1.1.1" level="project" />
+    <orderEntry type="library" name="org.json" level="project" />
   </component>
 </module>

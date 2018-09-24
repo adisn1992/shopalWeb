@@ -1,12 +1,38 @@
 package main.java.model;
 
-import javax.ws.rs.Path;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.MongoClient;
+
 
 /**
  * Created by user on 12/04/2018.
  */
-@Path("/product")
 public class ShoppingList {
+    // should be one instance of ShoppingList class and stocks collection
+    private static ShoppingList ourInstance = new ShoppingList();
+    private static DBCollection shopList;
+
+    /** Public: **/
+    public ShoppingList()
+    {
+        // connect to mongo
+        MongoClient mongoClient = new MongoClient("Localhost", 27017);
+        // get DB
+        DB database = mongoClient.getDB("shopal");
+        // get collection
+        shopList = database.getCollection("shopList");
+    }
+
+    public static ShoppingList getInstanceClass() {
+        return ourInstance;
+    }
+
+    public static DBCollection getInstanceCollection() {
+        return ourInstance.shopList;
+    }
+
+    /** Private: **/
 
 
 
