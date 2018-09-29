@@ -22,15 +22,6 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/dependencies/bson-3.6.3.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
           <root url="jar://$MODULE_DIR$/dependencies/mongodb-driver-3.6.3.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -46,22 +37,17 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" exported="" name="jersey-bundle-1.19.1" level="project" />
+    <orderEntry type="library" exported="" name="commons-logging-1.1.1" level="project" />
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/dependencies/google-api" />
+          <root url="jar://$MODULE_DIR$/dependencies/bson-3.6.3.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/dependencies/google-api" />
-        </SOURCES>
-        <jarDirectory url="file://$MODULE_DIR$/dependencies/google-api" recursive="false" />
-        <jarDirectory url="file://$MODULE_DIR$/dependencies/google-api" recursive="false" type="SOURCES" />
+        <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="jsr311-api-1.1.1 (1)" level="project" />
-    <orderEntry type="library" name="jersey-bundle-1.19.1" level="project" />
-    <orderEntry type="library" name="commons-logging-1.1.1" level="project" />
     <orderEntry type="library" name="org.json" level="project" />
   </component>
 </module>

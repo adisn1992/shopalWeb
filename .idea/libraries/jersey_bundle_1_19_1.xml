@@ -6,6 +6,8 @@
       <root url="jar://$PROJECT_DIR$/dependencies/bson-3.6.3.jar!/" />
       <root url="jar://$PROJECT_DIR$/dependencies/mongodb-driver-3.6.3.jar!/" />
       <root url="jar://$PROJECT_DIR$/dependencies/mongodb-driver-core-3.6.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dependencies/org.json.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dependencies/json-simple-1.1.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

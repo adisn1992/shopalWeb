@@ -2,7 +2,9 @@ package main.java.model;
 import org.json.*;
 import com.mongodb.*;
 import org.bson.types.ObjectId;
-
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
 
 public class Stock{
     // should be one instance of stock class and stocks collection
@@ -10,7 +12,7 @@ public class Stock{
     private static DBCollection stocks;
 
 
-    /** Public: **/
+/** Public: **/
     public Stock()
     {
         // connect to mongo
@@ -25,6 +27,14 @@ public class Stock{
         return ourInstance;
     }
 
+    public String getStock(String stockId) throws Exception {
+        validationOfStock(stockId);
+        DBCursor o = stocks.find(new BasicDBObject("_id", new ObjectId(stockId)));
+        BasicDBObject curr = (BasicDBObject) o.next();
+        System.out.print(curr.toString());
+        return curr.toString();
+    }
+
     public String newStock(String name){
         return createStock(name);
     }
@@ -32,6 +42,12 @@ public class Stock{
     public void deleteStockById(String stockId) throws Exception {
         validationOfStock(stockId);
         deleteStock(stockId);
+    }
+
+    public void removeProductById(String stockId, Integer productId) throws Exception {
+        validationOfStock(stockId);
+        removeProduct(stockId, productId);
+
     }
 
     public static DBCollection getInstanceCollection() {
@@ -80,8 +96,31 @@ public class Stock{
         // adi: return
     }
 
+    public void updateListOfProducts(String stockId, JSONArray products){
+        // iterate products and update quantities
+        for(Object item: products){
+            if ( item instanceof JSONObject) {
+                JSONObject product =  (JSONObject)item;
+                try {
+                    // get args
+                    Integer productId = Integer.parseInt(product.get("productId").toString());
+                    Integer available = Integer.parseInt(product.get("available").toString());
+                    Integer limit = Integer.parseInt(product.get("limit").toString());
+                    // send args to method
+                    createOrupdateProduct(stockId, productId, available, limit);
+                }
+                catch(Exception e) {
+                    int y = 7;
+                }
+            }
+            else{
+                int x =5;
+            }
+        }
+    }
 
-    /** Private: **/
+
+/** Private: **/
     private String createStock(String name){
         BasicDBObject doc = new BasicDBObject("name", name).append("list", null);
         stocks.insert(doc);
@@ -98,6 +137,19 @@ public class Stock{
 
     private void deleteStock(String stockId){
         stocks.remove(new BasicDBObject("_id", new ObjectId(stockId)));
+    }
+
+    private void removeProduct(String stockId, Integer productId){
+        BasicDBObject query = new BasicDBObject("_id", new ObjectId(stockId));
+
+        BasicDBObject fields = new BasicDBObject("list",
+                new BasicDBObject( "productId", productId));
+
+        BasicDBObject update = new BasicDBObject("$pull",fields);
+
+        stocks.update( query, update );
+
+        //stocks.remove(new BasicDBObject("_id", new ObjectId(stockId)))
     }
 
     private void createProduct(String stockId, Integer productId, Integer available, Integer limit){
@@ -131,6 +183,7 @@ public class Stock{
         return (cursor.count() >= 1 ) ? true : false;
     }
 
+    // adi: check this one
     private Integer getValueOfProduct(String stockId, Integer productId, String fieldName) throws Exception {
         DBCursor cursor = stocks.find(new BasicDBObject("_id", new ObjectId(stockId)).append("list.productId", productId),
                 new BasicDBObject("list", 1));
@@ -138,17 +191,25 @@ public class Stock{
         // get cursor (next = curr)
         BasicDBObject curr = (BasicDBObject) cursor.next();
         // get list array as json
-        JSONArray queryArray = new JSONArray(curr.getString("list"));
+        JSONParser parser = new JSONParser();
+        JSONArray queryArray = (JSONArray) parser.parse(curr.getString("list"));
 
         // iterate queryArray and return the value
-        for (int i = 0; i < queryArray.length(); i++) {
-            JSONObject item  = queryArray.getJSONObject(i);
-            if ((Integer) item.get("productId") == productId){
-                return (Integer) item.get(fieldName);
+        for(Object item: queryArray){
+            if ( item instanceof JSONObject) {
+                JSONObject product =  (JSONObject)item;
+                try {
+                    if (product.get("productId") == productId){
+                        return (Integer) product.get(fieldName);
+                    }
+                }
+                catch(Exception e) {
+                    throw new Exception("01_getValueOfProduct failed");
+                }
             }
         }
 
-        throw new Exception("getValueOfProduct failed");
+        throw new Exception("02_getValueOfProduct failed");
     }
 }
 

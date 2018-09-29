@@ -9,8 +9,8 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Stock stock = new Stock();
-        stock.createOrupdateProduct("5ba68a6df21c55ef12534b8a", 82,10,9);
-
+        //stock.createOrupdateProduct("5ba68a6df21c55ef12534b8a", 82,10,9);
+        //stock.getStock("5ba68a6df21c55ef12534b8a");
         //System.out.print(stock.is_stockId_existInDB("5ba66edef21c55ef12534b88"));
 
        // System.out.print(stock.getValueOfProduct("5ba68a6df21c55ef12534b8a", 3,"available"));

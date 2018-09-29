@@ -29,27 +29,17 @@ public class Ctwo {
         return x;
     }
 
-/*
 
-    @POST
-    @Path(value = "/validation")
-    @Consumes("application/json")
-    @Produces(MediaType.APPLICATION_JSON)
-    @ApiResponses({//
-            @ApiResponse(code = 204, message = "All validations pass"), //
-            @ApiResponse(code = 400, message = "Found violations in validation", responseContainer = "Set",
-                    response = Violation.class)//
-    })
-    default Response validate(@NotNull final T obj) {
-        final Set<ConstraintViolation<T>> constraintViolations = getValidator().validate(obj, AllValidations.class);
-
-        if (constraintViolations.isEmpty()) {
-            return Response.noContent().build();
-        }
-
-        throw new ConstraintViolationException(constraintViolations);
+    @PUT
+    @Path("/validation")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String bbb(String data){
+        String x = data;
+        int b = 5;
+        return "adi";
     }
-*/
+
 
 }
 
