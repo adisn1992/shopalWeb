@@ -4,7 +4,6 @@ import main.java.model.Stock;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -13,19 +12,7 @@ import javax.ws.rs.core.MediaType;
 @Path("/stock")
 //adi: add getters - stockid, products in stocks, etc..
 public class StockRestService{
-
     private Stock stock = Stock.getInstanceClass();
-    //private MongoCollection<Document> stocks = stock.getStocksCollection();
-
-    /** Public: **/
-    // adi: exp
-    @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    @Path("/users")
-    public String users(){
-        return "hello from stocks";
-    }
-
 
     @GET
     @Path("/get/{stockId}")
@@ -33,9 +20,6 @@ public class StockRestService{
     @Produces(MediaType.TEXT_PLAIN)
     public String getStock(@PathParam("stockId") String stockId) throws Exception{
         return stock.getStock(stockId);
-        //stock.createOrupdateProduct(stockId, productId, 1, 0 );
-        //return "adi";
-        // adi: return
     }
 
     @PUT
@@ -50,7 +34,7 @@ public class StockRestService{
         try {
             data = (JSONObject) parser.parse(dataStr);
             products = (JSONArray) parser.parse(data.get("products").toString());
-            stock.updateListOfProducts(data.get("stockId").toString(), products);
+            stock.updateListOfProducts_stockActivity(data.get("stockId").toString(), products);
         }
         catch(Exception e){
             // adi: handle exception
@@ -58,6 +42,19 @@ public class StockRestService{
 
         return "adi";
     }
+
+
+
+
+    /*
+        // adi: exp
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    @Path("/users")
+    public String users(){
+        return "hello from stocks";
+    }
+
 
     @PUT
     @Path("/remove/")
@@ -83,8 +80,6 @@ public class StockRestService{
         return response;
     }
 
-
-
     //adi: should be post
     @GET
     @Path("/newProduct/{stockId}/{productId}")
@@ -107,4 +102,5 @@ public class StockRestService{
         return "adi";
         // adi: return
     }
+    */
 }

@@ -12,7 +12,7 @@
 \f0\fs22 \cf2 \cb3 \CocoaLigature0 cd /Users/adimarsiano/Desktop/shopalWeb/mongo/bin\
 ./mongo\
 db\
-use shoapl\
+use shopal\
 
 \fs28 \cf4 \cb5 \expnd0\expndtw0\kerning0
 \CocoaLigature1 \
@@ -35,35 +35,45 @@ db.users.insertOne(\
 db.stocks.insertOne(\
 \{\
     name: "work",\
-    list: [ \{productId: 
+    items: [ \{productId: 
 \fs26 \cf7 \cb8 \expnd0\expndtw0\kerning0
-NumberInt\cf9 (\cf10 1\cf9 )
+NumberInt\cf9 (1\cf10 1\cf9 )
 \fs24 \cf6 \cb1 \kerning1\expnd0\expndtw0 , available: 
 \fs26 \cf7 \cb8 \expnd0\expndtw0\kerning0
 NumberInt\cf9 (\cf10 2\cf9 )
 \fs24 \cf6 \cb1 \kerning1\expnd0\expndtw0 , limit: 
 \fs26 \cf7 \cb8 \expnd0\expndtw0\kerning0
-NumberInt\cf9 (\cf10 4)
+NumberInt\cf9 (\cf10 4), toPurchase: \cf7 NumberInt\cf9 (\cf10 1)
 \fs24 \cf6 \cb1 \kerning1\expnd0\expndtw0 \},\
 			\{productId: 
 \fs26 \cf7 \cb8 \expnd0\expndtw0\kerning0
-NumberInt\cf9 (\cf10 2\cf9 )
-\fs24 \cf6 \cb1 \kerning1\expnd0\expndtw0 , \cf6 available\cf6 : 
+NumberInt\cf9 (1\cf10 2\cf9 )
+\fs24 \cf6 \cb1 \kerning1\expnd0\expndtw0 , available: 
 \fs26 \cf7 \cb8 \expnd0\expndtw0\kerning0
 NumberInt\cf9 (\cf10 1\cf9 )
 \fs24 \cf6 \cb1 \kerning1\expnd0\expndtw0 , limit: 
 \fs26 \cf7 \cb8 \expnd0\expndtw0\kerning0
-NumberInt\cf9 (\cf10 1\cf9 )
+NumberInt\cf9 (\cf10 1\cf9 ), \cf10 toPurchase: \cf7 NumberInt\cf9 (\cf10 1)
 \fs24 \cf6 \cb1 \kerning1\expnd0\expndtw0 \},\
 			\{productId: 
 \fs26 \cf7 \cb8 \expnd0\expndtw0\kerning0
-NumberInt\cf9 (\cf10 3\cf9 )
-\fs24 \cf6 \cb1 \kerning1\expnd0\expndtw0 , \cf6 available\cf6 : 
+NumberInt\cf9 (1\cf10 3\cf9 )
+\fs24 \cf6 \cb1 \kerning1\expnd0\expndtw0 , available: 
 \fs26 \cf7 \cb8 \expnd0\expndtw0\kerning0
 NumberInt\cf9 (\cf10 5\cf9 )
 \fs24 \cf6 \cb1 \kerning1\expnd0\expndtw0 , limit: 
 \fs26 \cf7 \cb8 \expnd0\expndtw0\kerning0
-NumberInt\cf9 (\cf10 2\cf9 )
+NumberInt\cf9 (\cf10 2\cf9 ), \cf10 toPurchase: \cf7 NumberInt\cf9 (\cf10 1)
+\fs24 \cf6 \cb1 \kerning1\expnd0\expndtw0 \},\
+			\{productId: 
+\fs26 \cf7 \cb8 \expnd0\expndtw0\kerning0
+NumberInt\cf9 (1\cf10 4\cf9 )
+\fs24 \cf6 \cb1 \kerning1\expnd0\expndtw0 , available: 
+\fs26 \cf7 \cb8 \expnd0\expndtw0\kerning0
+NumberInt\cf9 (\cf10 5\cf9 )
+\fs24 \cf6 \cb1 \kerning1\expnd0\expndtw0 , limit: 
+\fs26 \cf7 \cb8 \expnd0\expndtw0\kerning0
+NumberInt\cf9 (\cf10 2\cf9 ), \cf10 toPurchase: \cf7 NumberInt\cf9 (\cf10 1)
 \fs24 \cf6 \cb1 \kerning1\expnd0\expndtw0 \}\
 		  ]\
 \
@@ -107,9 +117,9 @@ db.products.insertOne(\
 \{\
     barcode: 
 \fs26 \cf7 \cb8 \expnd0\expndtw0\kerning0
-NumberInt(233845)
+NumberInt(80)
 \fs24 \cf6 \cb1 \kerning1\expnd0\expndtw0 ,\
-	data: \{name: "milk", description:"good milk"\},\
-    img:  "https://www.google.co.il/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjq45zNhc_dAhWSz4UKHfM9BwkQjRx6BAgBEAU&url=https%3A%2F%2Fwww.thekitchn.com%2Fhomemade-cashew-milk-243347&psig=AOvVaw3bBJGPXWcMrA017YBLvSjU&ust=1537720553454825" \
+	data: \{name: "bread", description:"good bread"\},\
+    img:  "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Korb_mit_Br%C3%B6tchen.JPG/1200px-Korb_mit_Br%C3%B6tchen.JPG" \
 \}\
 )}
