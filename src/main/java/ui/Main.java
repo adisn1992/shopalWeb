@@ -12,7 +12,9 @@ public class Main {
     public static void main(String[] args) throws Exception {
         String stockId = "5bb0909031e93b5b3b3c21ec";
         Stock stock = new Stock();
-        stock.updateAfterScan(stockId, 90);
+        //stock.updateAfterScan(stockId, 90);
+       // String s = stock.getShoppingList(stockId);
+
         //stock.List<Integer> getAllProductsId_stockActivity( stockId, 90, 6, 9, -1);
         int x=5;
         //stock.createOrupdateProduct("5ba68a6df21c55ef12534b8a", 82,10,9);

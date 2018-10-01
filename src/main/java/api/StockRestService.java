@@ -8,9 +8,7 @@ import org.json.simple.parser.JSONParser;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-
 @Path("/stock")
-//adi: add getters - stockid, products in stocks, etc..
 public class StockRestService{
     private Stock stock = Stock.getInstanceClass();
 
@@ -20,6 +18,14 @@ public class StockRestService{
     @Produces(MediaType.TEXT_PLAIN)
     public String getStock(@PathParam("stockId") String stockId) throws Exception{
         return stock.getStock(stockId);
+    }
+
+    @GET
+    @Path("/getShopList/{stockId}")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getShopList(@PathParam("stockId") String stockId) throws Exception{
+        return stock.getShoppingList(stockId);
     }
 
     @PUT
@@ -43,18 +49,26 @@ public class StockRestService{
         return "adi";
     }
 
-
-
-
-    /*
-        // adi: exp
-    @GET
+    @PUT
+    @Path("/purchase/")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    @Path("/users")
-    public String users(){
-        return "hello from stocks";
-    }
+    public String purchaseProducts(String dataStr){
+        JSONParser parser = new JSONParser();
+        JSONObject data;
+        JSONArray products;
 
+        try {
+            data = (JSONObject) parser.parse(dataStr);
+            products = (JSONArray) parser.parse(data.get("products").toString());
+            stock.purchaseProducts(data.get("stockId").toString(), products);
+        }
+        catch(Exception e){
+            // adi: handle exception
+        }
+
+        return "adi";
+    }
 
     @PUT
     @Path("/remove/")
@@ -80,6 +94,13 @@ public class StockRestService{
         return response;
     }
 
+}
+
+
+
+
+
+    /*
     //adi: should be post
     @GET
     @Path("/newProduct/{stockId}/{productId}")
@@ -103,4 +124,3 @@ public class StockRestService{
         // adi: return
     }
     */
-}

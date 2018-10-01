@@ -38,34 +38,21 @@ public class Product {
         return ourInstance.products;
     }
 
-    public String getImgUrl(Integer productId) throws Exception {
+    public String getImg(Integer productId) throws Exception {
         validationOfProduct(productId);
-        return getImg(productId);
+        return getImgByProduct(productId);
     }
 
-    public List<String> getImgs_stock(String stockId) throws Exception {
+    public List<String> getImages(String stockId) throws Exception {
         List<Integer> productsId = stockClass.getAllProductsId_stockActivity(stockId);
-        return  getImgs(productsId);
-    }
-
-    public List<String> getImgs_shoppingList(String stockId) throws Exception {
-        List<Integer> productsId = stockClass.getAllProductsId_listActivity(stockId);
-        return  getImgs(productsId);
+        return  getImagesByListOfProducts(productsId);
     }
 
 
 /** Private: **/
-    // adi:
-    public void getProduct(int barcode){
-        // if not in DB search in out api
-        // return product
-    }
 
-    // adi:
-    public void setProduct(int jsonProduct){
-        // get json and store it in DB
-        // json not int **
-
+    public void setProduct(){
+        // TODO
     }
 
     private void validationOfProduct(Integer productId) throws Exception{
@@ -79,12 +66,12 @@ public class Product {
         return (cursor.count() >= 1 ) ? true : false;
     }
 
-    private List<String> getImgs(List<Integer> productsId) throws Exception{
+    private List<String> getImagesByListOfProducts(List<Integer> productsId) throws Exception{
         List<String> imgs = new ArrayList<String>();
 
         for(Integer id: productsId){
             if(is_productId_existInDB(id)) {
-                String img = getImg(id);
+                String img = getImgByProduct(id);
                 imgs.add(img);
             }
         }
@@ -92,14 +79,12 @@ public class Product {
         return imgs;
     }
 
-    private String getImg(Integer productId) throws Exception{
+    private String getImgByProduct(Integer productId) throws Exception{
         DBCursor cursor = products.find(new BasicDBObject("barcode", productId));
         BasicDBObject curr = (BasicDBObject) cursor.next();
         String Img  = curr.get("img").toString();
         return Img;
     }
-
-
 
 
 }
