@@ -5,6 +5,7 @@ import org.bson.types.ObjectId;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import javax.xml.bind.ValidationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,21 +31,22 @@ public class Product {
         products = database.getCollection("products");
     }
 
-    public static Product getInstanceClass() {
-        return ourInstance;
-    }
-
     public static DBCollection getInstanceCollection() {
         return ourInstance.products;
     }
 
-    public String getImg(Integer productId) throws Exception {
+    public static Product getInstanceClass() {
+        return ourInstance;
+    }
+
+    //public void addProduct(Integer)
+    public String getImg(Integer productId) throws ValidationException {
         validationOfProduct(productId);
         return getImgByProduct(productId);
     }
 
-    public List<String> getImages(String stockId) throws Exception {
-        List<Integer> productsId = stockClass.getAllProductsId_stockActivity(stockId);
+    public List<String> getImages(String stockId) throws ValidationException {
+        List<Integer> productsId = stockClass.getAllProductsId(stockId);
         return  getImagesByListOfProducts(productsId);
     }
 
@@ -55,9 +57,9 @@ public class Product {
         // TODO
     }
 
-    private void validationOfProduct(Integer productId) throws Exception{
+    private void validationOfProduct(Integer productId) throws ValidationException{
         if (!is_productId_existInDB(productId)) {
-            throw new Exception("Invalid product"); // error: stock not exist in DB
+            throw new ValidationException("Invalid product"); // error: stock not exist in DB
         }
     }
 
@@ -66,27 +68,34 @@ public class Product {
         return (cursor.count() >= 1 ) ? true : false;
     }
 
-    private List<String> getImagesByListOfProducts(List<Integer> productsId) throws Exception{
-        List<String> imgs = new ArrayList<String>();
+    private List<String> getImagesByListOfProducts(List<Integer> productsId) {
+        List<String> images = new ArrayList<String>();
 
         for(Integer id: productsId){
             if(is_productId_existInDB(id)) {
                 String img = getImgByProduct(id);
-                imgs.add(img);
+                images.add(img);
             }
         }
 
-        return imgs;
+        return images;
     }
 
-    private String getImgByProduct(Integer productId) throws Exception{
-        DBCursor cursor = products.find(new BasicDBObject("barcode", productId));
-        BasicDBObject curr = (BasicDBObject) cursor.next();
-        String Img  = curr.get("img").toString();
+    private String getImgByProduct(Integer productId) {
+        String Img = null;
+        try{
+            validationOfProduct(productId);
+            DBCursor cursor = products.find(new BasicDBObject("barcode", productId));
+            BasicDBObject curr = (BasicDBObject) cursor.next();
+            Img  = curr.get("img").toString();
+        }
+        catch(ValidationException e){
+            // adi: if (Img == null) -> default pic
+
+        }
+
         return Img;
     }
-
-
 }
 
 

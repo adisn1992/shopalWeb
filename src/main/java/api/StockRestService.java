@@ -4,9 +4,13 @@ import main.java.model.Stock;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.xml.bind.ValidationEvent;
+import javax.xml.bind.ValidationException;
 
 @Path("/stock")
 public class StockRestService{
@@ -17,7 +21,12 @@ public class StockRestService{
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.TEXT_PLAIN)
     public String getStock(@PathParam("stockId") String stockId) throws Exception{
-        return stock.getStock(stockId);
+        try {
+            return stock.getStock(stockId);
+        }
+        catch(ValidationException e){
+            throw new WebApplicationException(Response.Status.BAD_REQUEST);
+        }
     }
 
     @GET
@@ -25,14 +34,19 @@ public class StockRestService{
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.TEXT_PLAIN)
     public String getShopList(@PathParam("stockId") String stockId) throws Exception{
-        return stock.getShoppingList(stockId);
+        try {
+            return stock.getShoppingList(stockId);
+        }
+        catch(ValidationException e){
+            throw new WebApplicationException(Response.Status.BAD_REQUEST);
+        }
     }
 
     @PUT
     @Path("/update/")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public String updateProductsQuantities(String dataStr){
+    public void updateProductsQuantities(String dataStr){
         JSONParser parser = new JSONParser();
         JSONObject data;
         JSONArray products;
@@ -40,20 +54,23 @@ public class StockRestService{
         try {
             data = (JSONObject) parser.parse(dataStr);
             products = (JSONArray) parser.parse(data.get("products").toString());
-            stock.updateListOfProducts_stockActivity(data.get("stockId").toString(), products);
+            stock.updateProducts(data.get("stockId").toString(), products);
         }
         catch(Exception e){
-            // adi: handle exception
+            if(e instanceof ValidationException){
+                throw new WebApplicationException(Response.Status.BAD_REQUEST);
+            }
+            else if(e instanceof ParseException){
+                throw new WebApplicationException(Response.Status.NOT_ACCEPTABLE);
+            }
         }
-
-        return "adi";
     }
 
     @PUT
     @Path("/purchase/")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public String purchaseProducts(String dataStr){
+    public void purchaseProducts(String dataStr){
         JSONParser parser = new JSONParser();
         JSONObject data;
         JSONArray products;
@@ -64,19 +81,21 @@ public class StockRestService{
             stock.purchaseProducts(data.get("stockId").toString(), products);
         }
         catch(Exception e){
-            // adi: handle exception
+            if(e instanceof ValidationException){
+                throw new WebApplicationException(Response.Status.BAD_REQUEST);
+            }
+            else if(e instanceof ParseException){
+                throw new WebApplicationException(Response.Status.NOT_ACCEPTABLE);
+            }
         }
-
-        return "adi";
     }
 
     @PUT
     @Path("/remove/")
     @Produces(MediaType.TEXT_PLAIN)
-    public String removeProduct(String dataStr){
+    public void removeProduct(String dataStr){
         JSONParser parser = new JSONParser();
         JSONObject data;
-        String response= null;
 
         try {
             data = (JSONObject) parser.parse(dataStr);
@@ -84,16 +103,78 @@ public class StockRestService{
             Integer productId = Integer.parseInt(data.get("productId").toString());
 
             stock.removeProductById(stockId, productId);
-            response = productId.toString();
         }
         catch(Exception e){
-            // adi: handle exception
-            response = null;
+            if(e instanceof ValidationException){
+                throw new WebApplicationException(Response.Status.BAD_REQUEST);
+            }
+            else if(e instanceof ParseException){
+                throw new WebApplicationException(Response.Status.NOT_ACCEPTABLE);
+            }
         }
-
-        return response;
     }
 
+    @POST
+    @Path("/addProduct/")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public void addProduct(String dataStr){
+        JSONParser parser = new JSONParser();
+        JSONObject data;
+
+        try {
+            data = (JSONObject) parser.parse(dataStr);
+            String stockId = data.get("stockId").toString();
+            Integer productId = Integer.parseInt(data.get("productId").toString());
+            Integer limit = Integer.parseInt(data.get("limit").toString());
+            Integer available = Integer.parseInt(data.get("available").toString());
+            Integer toPurchase = ((limit - available) <0) ? 0 : (limit - available);
+
+            stock.createOrupdateProduct(stockId, productId, available, limit, toPurchase);
+            }
+        catch(Exception e){
+            if(e instanceof ValidationException){
+                throw new WebApplicationException(Response.Status.BAD_REQUEST);
+            }
+        }
+    }
+
+    @PUT
+    @Path("/productToTrash/")
+    @Produces(MediaType.TEXT_PLAIN)
+    public void productToTrash(String dataStr){
+        JSONParser parser = new JSONParser();
+        JSONObject data;
+
+        try {
+            data = (JSONObject) parser.parse(dataStr);
+            String stockId = data.get("stockId").toString();
+            Integer productId = Integer.parseInt(data.get("productId").toString());
+
+            stock.updateAfterScan(stockId, productId);
+        }
+        catch(Exception e){
+            if(e instanceof ValidationException){
+                throw new WebApplicationException(Response.Status.BAD_REQUEST);
+            }
+            else if(e instanceof ParseException){
+                throw new WebApplicationException(Response.Status.NOT_ACCEPTABLE);
+            }
+        }
+    }
+
+    @GET
+    @Path("/isProductExistInStock/{stockId}/{productId}")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.TEXT_PLAIN)
+    public boolean getStock(@PathParam("stockId") String stockId, @PathParam("productId") Integer productId) {
+        try {
+            return stock.checkIfProductExistInStock(stockId, productId);
+        }
+        catch(ValidationException e){
+            throw new WebApplicationException(Response.Status.BAD_REQUEST);
+        }
+    }
 }
 
 
