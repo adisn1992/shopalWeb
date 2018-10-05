@@ -9,28 +9,16 @@
     <list default="true" id="6cb8dac9-a1c6-490a-b163-f84ad5eba89f" name="Default" comment="the server is working!!!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/shopal/shopal.war" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shopal/shopal.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/shopalWeb/main/java/api/ProductRestService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/shopalWeb/main/java/api/ProductRestService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/shopalWeb/main/java/api/ShoppingListRestService.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/shopalWeb/main/java/api/StockRestService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/shopalWeb/main/java/api/StockRestService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/shopalWeb/main/java/model/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/shopalWeb/main/java/model/Product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/shopalWeb/main/java/model/ShoppingList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/shopalWeb/main/java/model/Stock.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/shopalWeb/main/java/model/Stock.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/shopalWeb/main/java/ui/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/shopalWeb/main/java/ui/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shopalData/data/db/WiredTiger.turtle" beforeDir="false" afterPath="$PROJECT_DIR$/shopalData/data/db/WiredTiger.turtle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shopalData/data/db/WiredTiger.wt" beforeDir="false" afterPath="$PROJECT_DIR$/shopalData/data/db/WiredTiger.wt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shopalData/data/db/collection-0--7151823260643090222.wt" beforeDir="false" afterPath="$PROJECT_DIR$/shopalData/data/db/collection-0--7151823260643090222.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shopalData/data/db/collection-2--6510087778626166140.wt" beforeDir="false" afterPath="$PROJECT_DIR$/shopalData/data/db/collection-2--6510087778626166140.wt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shopalData/data/db/collection-5--7151823260643090222.wt" beforeDir="false" afterPath="$PROJECT_DIR$/shopalData/data/db/collection-5--7151823260643090222.wt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shopalData/data/db/diagnostic.data/metrics.interim" beforeDir="false" afterPath="$PROJECT_DIR$/shopalData/data/db/diagnostic.data/metrics.interim" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shopalData/data/db/index-1--7151823260643090222.wt" beforeDir="false" afterPath="$PROJECT_DIR$/shopalData/data/db/index-1--7151823260643090222.wt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shopalData/data/db/index-2--7151823260643090222.wt" beforeDir="false" afterPath="$PROJECT_DIR$/shopalData/data/db/index-2--7151823260643090222.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shopalData/data/db/index-3--6510087778626166140.wt" beforeDir="false" afterPath="$PROJECT_DIR$/shopalData/data/db/index-3--6510087778626166140.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shopalData/data/db/mongod.lock" beforeDir="false" afterPath="$PROJECT_DIR$/shopalData/data/db/mongod.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shopalData/data/db/sizeStorer.wt" beforeDir="false" afterPath="$PROJECT_DIR$/shopalData/data/db/sizeStorer.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/ProductRestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/ProductRestService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/api/StockRestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/StockRestService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Stock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Stock.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -63,7 +51,7 @@
           <entry key="null/shoapl/products" value="6" />
           <entry key="null/shopal/products" value="38" />
           <entry key="null/shopal/shopList" value="43" />
-          <entry key="null/shopal/stocks" value="195" />
+          <entry key="null/shopal/stocks" value="206" />
           <entry key="null/shopal/users" value="11" />
           <entry key="xml" value="6" />
         </counts>
@@ -73,7 +61,7 @@
           <entry key="CLASS" value="7" />
           <entry key="JAVA" value="60" />
           <entry key="JSP" value="2" />
-          <entry key="MONGO" value="293" />
+          <entry key="MONGO" value="304" />
           <entry key="XML" value="6" />
         </counts>
       </usages-collector>
@@ -98,13 +86,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="12297" />
+          <entry key="java" value="12366" />
           <entry key="txt" value="73" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="12297" />
+          <entry key="JAVA" value="12366" />
           <entry key="PLAIN_TEXT" value="73" />
         </counts>
       </usages-collector>
@@ -112,11 +100,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/model/Stock.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="93" selection-start-line="93" selection-end-line="93" />
+            <state relative-caret-position="-440">
+              <caret line="100" lean-forward="true" selection-start-line="100" selection-end-line="100" />
               <folding>
                 <element signature="docComment;method#Stock#0;class#Stock#0" />
                 <element signature="method#getStock#0;class#Stock#0" />
@@ -138,21 +126,26 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/api/StockRestService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="918">
+              <caret line="173" column="33" selection-start-line="173" selection-start-column="14" selection-end-line="173" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="mongo://null/shopal/stocks">
           <provider selected="true" editor-type-id="MongoData" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/api/StockRestService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="735">
-              <caret line="49" selection-start-line="49" selection-end-line="49" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
+        <entry file="mongo://null/shopal/stocks">
+          <provider selected="true" editor-type-id="MongoData" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -270,8 +263,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="153" />
-    <option name="y" value="143" />
+    <option name="x" value="457" />
+    <option name="y" value="293" />
     <option name="width" value="1440" />
     <option name="height" value="805" />
   </component>
@@ -529,7 +522,7 @@
       <workItem from="1538375282211" duration="8365000" />
       <workItem from="1538404314867" duration="2233000" />
       <workItem from="1538488233770" duration="13250000" />
-      <workItem from="1538683511755" duration="2743000" />
+      <workItem from="1538683511755" duration="9351000" />
     </task>
     <task id="LOCAL-00001" summary="the server is working!!!">
       <created>1537516858308</created>
@@ -549,7 +542,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="160491000" />
+    <option name="totallyTimeSpent" value="167099000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -561,7 +554,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="397" y="245" width="1440" height="805" extended-state="0" />
+    <frame x="457" y="293" width="1440" height="805" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17811158" />
@@ -576,13 +569,13 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3278856" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.5028986" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.25652173" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.25652173" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3299285" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3278856" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.24594992" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.24492754" />
       <window_info anchor="bottom" id="Application Servers" order="10" weight="0.32961586" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" weight="0.3299285" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.32028985" />
@@ -592,7 +585,7 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24973376" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info active="true" anchor="right" id="Mongo Explorer" order="5" visible="true" weight="0.18168813" />
+      <window_info anchor="right" id="Mongo Explorer" order="5" visible="true" weight="0.18168813" />
       <window_info anchor="right" id="Maven Projects" order="6" weight="0.32960597" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
@@ -659,6 +652,18 @@
           <line>18</line>
           <properties />
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/api/StockRestService.java</url>
+          <line>132</line>
+          <properties />
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/api/StockRestService.java</url>
+          <line>136</line>
+          <properties />
+          <option name="timeStamp" value="62" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -842,20 +847,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/api/StockRestService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/model/Stock.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="93" selection-start-line="93" selection-end-line="93" />
+        <state relative-caret-position="-440">
+          <caret line="100" lean-forward="true" selection-start-line="100" selection-end-line="100" />
           <folding>
             <element signature="docComment;method#Stock#0;class#Stock#0" />
             <element signature="method#getStock#0;class#Stock#0" />
@@ -872,6 +867,16 @@
             <element signature="method#is_stockId_existInDB#0;class#Stock#0" />
             <element signature="method#is_productId_exist#0;class#Stock#0" />
             <element signature="method#getValueOfProduct#0;class#Stock#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/api/StockRestService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="173" column="33" selection-start-line="173" selection-start-column="14" selection-end-line="173" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -167,9 +167,9 @@ public class StockRestService{
     @Path("/isProductExistInStock/{stockId}/{productId}")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.TEXT_PLAIN)
-    public boolean getStock(@PathParam("stockId") String stockId, @PathParam("productId") Integer productId) {
+    public String getStock(@PathParam("stockId") String stockId, @PathParam("productId") Integer productId) {
         try {
-            return stock.checkIfProductExistInStock(stockId, productId);
+            return (stock.checkIfProductExistInStock(stockId, productId)) ? "true" : "false";
         }
         catch(ValidationException e){
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
