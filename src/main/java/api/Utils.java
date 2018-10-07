@@ -19,9 +19,9 @@ import java.util.List;
 
 public class Utils {
 
-    public static List<Integer> getProductsId(String id, DBCollection collection){
+    public static List<Long> getProductsId(String id, DBCollection collection){
 
-        List<Integer> productsId = new ArrayList<Integer>();
+        List<Long> productsId = new ArrayList<Long>();
 
         DBCursor cursor = collection.find(new BasicDBObject("_id", new ObjectId(id)), new BasicDBObject("items", 1));
         BasicDBObject stock = (BasicDBObject) cursor.next();
@@ -39,7 +39,7 @@ public class Utils {
         for(Object item: products){
             if ( item instanceof JSONObject) {
                 JSONObject product =  (JSONObject)item;
-                productsId.add(Integer.parseInt(product.get("productId").toString()));
+                productsId.add(Long.parseLong(product.get("productId").toString()));
             }
         }
 

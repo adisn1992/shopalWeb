@@ -4,7 +4,7 @@ import main.java.model.Product;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.xml.bind.ValidationException;
+//import javax.xml.bind.ValidationException;
 
 
 @Path("/product")
@@ -15,11 +15,11 @@ public class ProductRestService {
     @Path("/getImg/{productId}")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.TEXT_PLAIN)
-    public String getImg(@PathParam("productId") Integer productId) {
+    public String getImg(@PathParam("productId") Long productId) {
         try{
             return product.getImg(productId);
         }
-        catch(ValidationException e){
+        catch(/*ValidationException*/Exception e){
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
     }
@@ -32,7 +32,7 @@ public class ProductRestService {
         try{
             return Utils.getImgsJson(product.getImages(stockId));
         }
-        catch(ValidationException e){
+        catch(/*ValidationException*/Exception e){
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
     }

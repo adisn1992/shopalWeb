@@ -9,8 +9,8 @@ import org.json.simple.parser.ParseException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.xml.bind.ValidationEvent;
-import javax.xml.bind.ValidationException;
+//import javax.xml.bind.ValidationEvent;
+//import javax.xml.bind.ValidationException;
 
 @Path("/stock")
 public class StockRestService{
@@ -24,7 +24,7 @@ public class StockRestService{
         try {
             return stock.getStock(stockId);
         }
-        catch(ValidationException e){
+        catch(/*ValidationException*/Exception e){
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
     }
@@ -37,7 +37,7 @@ public class StockRestService{
         try {
             return stock.getShoppingList(stockId);
         }
-        catch(ValidationException e){
+        catch(/*ValidationException*/Exception e){
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
     }
@@ -57,7 +57,7 @@ public class StockRestService{
             stock.updateProducts(data.get("stockId").toString(), products);
         }
         catch(Exception e){
-            if(e instanceof ValidationException){
+            if(e instanceof /*ValidationException*/Exception){
                 throw new WebApplicationException(Response.Status.BAD_REQUEST);
             }
             else if(e instanceof ParseException){
@@ -81,7 +81,7 @@ public class StockRestService{
             stock.purchaseProducts(data.get("stockId").toString(), products);
         }
         catch(Exception e){
-            if(e instanceof ValidationException){
+            if(e instanceof /*ValidationException*/Exception){
                 throw new WebApplicationException(Response.Status.BAD_REQUEST);
             }
             else if(e instanceof ParseException){
@@ -100,12 +100,12 @@ public class StockRestService{
         try {
             data = (JSONObject) parser.parse(dataStr);
             String stockId = data.get("stockId").toString();
-            Integer productId = Integer.parseInt(data.get("productId").toString());
+            Long productId = Long.parseLong(data.get("productId").toString());
 
             stock.removeProductById(stockId, productId);
         }
         catch(Exception e){
-            if(e instanceof ValidationException){
+            if(e instanceof /*ValidationException*/Exception){
                 throw new WebApplicationException(Response.Status.BAD_REQUEST);
             }
             else if(e instanceof ParseException){
@@ -125,7 +125,7 @@ public class StockRestService{
         try {
             data = (JSONObject) parser.parse(dataStr);
             String stockId = data.get("stockId").toString();
-            Integer productId = Integer.parseInt(data.get("productId").toString());
+            Long productId = Long.parseLong(data.get("productId").toString());
             Integer limit = Integer.parseInt(data.get("limit").toString());
             Integer available = Integer.parseInt(data.get("available").toString());
             Integer toPurchase = ((limit - available) <0) ? 0 : (limit - available);
@@ -133,7 +133,7 @@ public class StockRestService{
             stock.createOrupdateProduct(stockId, productId, available, limit, toPurchase);
             }
         catch(Exception e){
-            if(e instanceof ValidationException){
+            if(e instanceof/*ValidationException*/Exception){
                 throw new WebApplicationException(Response.Status.BAD_REQUEST);
             }
         }
@@ -149,12 +149,12 @@ public class StockRestService{
         try {
             data = (JSONObject) parser.parse(dataStr);
             String stockId = data.get("stockId").toString();
-            Integer productId = Integer.parseInt(data.get("productId").toString());
+            Long productId = Long.parseLong(data.get("productId").toString());
 
             stock.updateAfterScan(stockId, productId);
         }
         catch(Exception e){
-            if(e instanceof ValidationException){
+            if(e instanceof /*ValidationException*/Exception){
                 throw new WebApplicationException(Response.Status.BAD_REQUEST);
             }
             else if(e instanceof ParseException){
@@ -167,11 +167,11 @@ public class StockRestService{
     @Path("/isProductExistInStock/{stockId}/{productId}")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.TEXT_PLAIN)
-    public String getStock(@PathParam("stockId") String stockId, @PathParam("productId") Integer productId) {
+    public String getStock(@PathParam("stockId") String stockId, @PathParam("productId") Long productId) {
         try {
             return (stock.checkIfProductExistInStock(stockId, productId)) ? "true" : "false";
         }
-        catch(ValidationException e){
+        catch(/*ValidationException*/Exception e){
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
     }

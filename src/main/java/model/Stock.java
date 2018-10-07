@@ -1,7 +1,7 @@
 package main.java.model;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
+//import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
 import main.java.api.Utils;
 import org.json.*;
 import com.mongodb.*;
@@ -11,7 +11,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import javax.xml.bind.ValidationException;
+//import javax.xml.bind.ValidationException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -41,7 +41,7 @@ public class Stock{
         return ourInstance;
     }
 
-    public String getStock(String stockId) throws ValidationException, ParseException  {
+    public String getStock(String stockId) throws /*ValidationException*/Exception, ParseException  {
         validationOfStock(stockId);
         refreshShoppingList(stockId);
 
@@ -49,7 +49,7 @@ public class Stock{
         return curr.toString();
     }
 
-    public String getShoppingList(String stockId) throws ValidationException, ParseException {
+    public String getShoppingList(String stockId) throws /*ValidationException*/Exception, ParseException {
         JSONParser parser = new JSONParser();
         JSONObject stock = null;
         JSONArray products = null;
@@ -73,19 +73,19 @@ public class Stock{
         return stock.toString();
     }
 
-    public void removeProductById(String stockId, Integer productId) throws ValidationException {
+    public void removeProductById(String stockId, Long productId) throws /*ValidationException*/Exception {
         validationOfStock(stockId);
         removeProduct(stockId, productId);
     }
 
-    public void updateProducts(String stockId, JSONArray products) throws ValidationException, ParseException {
+    public void updateProducts(String stockId, JSONArray products) throws /*ValidationException*/Exception, ParseException {
         validationOfStock(stockId);
 
         // iterate products and update quantities
         for(Object item: products){
             JSONObject product =  (JSONObject)item;
 
-            Integer productId = Integer.parseInt(product.get("productId").toString());
+            Long productId = Long.parseLong(product.get("productId").toString());
             updateProductValue(stockId, productId, "available", Integer.parseInt(product.get("available").toString()));
             updateProductValue(stockId, productId, "limit", Integer.parseInt(product.get("limit").toString()));
         }
@@ -94,20 +94,20 @@ public class Stock{
         refreshShoppingList(stockId);
     }
 
-    public List<Integer> getAllProductsId(String stockId) throws ValidationException{
+    public List<Long> getAllProductsId(String stockId) throws /*ValidationException*/Exception{
         validationOfStock(stockId);
         return Utils.getProductsId(stockId, stocks);
     }
 
     // adi: increase available
-    public void purchaseProducts(String stockId , JSONArray products) throws ValidationException, ParseException  {
+    public void purchaseProducts(String stockId , JSONArray products) throws /*ValidationException*/Exception, ParseException  {
         validationOfStock(stockId);
 
         for(Object item: products){
             JSONObject product =  (JSONObject)item;
 
             // get args
-            Integer productId = Integer.parseInt(product.get("productId").toString());
+            Long productId = Long.parseLong(product.get("productId").toString());
             Integer purchased = Integer.parseInt(product.get("purchased").toString());
 
             Integer available = getValueOfProduct(stockId, productId, "available");
@@ -122,7 +122,7 @@ public class Stock{
     }
 
     // update exist product after we scan it (throwing to can) -> available = available -1
-    public void updateAfterScan(String stockId, Integer productId) throws ValidationException, ParseException  {
+    public void updateAfterScan(String stockId, Long productId) throws /*ValidationException*/Exception, ParseException  {
         validationOfStock(stockId);
 
         if (!is_productId_exist(stockId, productId)) {
@@ -142,7 +142,7 @@ public class Stock{
 
     // update or create product with wanted quantities -> available, limit
     // for new product it should be available = 1, limit = 0;
-    public void createOrupdateProduct(String stockId, Integer productId, Integer available, Integer limit, Integer toPurchase) throws ValidationException {
+    public void createOrupdateProduct(String stockId, Long productId, Integer available, Integer limit, Integer toPurchase) throws /*ValidationException*/Exception {
         validationOfStock(stockId);
 
         if (!is_productId_exist(stockId, productId)) {
@@ -163,7 +163,7 @@ public class Stock{
         }
     }
 
-    public boolean checkIfProductExistInStock(String stockId, Integer productId) throws ValidationException{
+    public boolean checkIfProductExistInStock(String stockId, Long productId) throws /*ValidationException*/Exception{
         validationOfStock(stockId);
 
         return is_productId_exist(stockId, productId);
@@ -179,13 +179,13 @@ public class Stock{
     }
 
     // TODO: to check method
-    private void validationOfStock(String stockId) throws ValidationException {
+    private void validationOfStock(String stockId) throws /*ValidationException*/Exception {
         if (!is_stockId_existInDB(stockId)) {
-            throw new ValidationException("Invalid stock"); // error: stock not exist in DB
+            throw new /*ValidationException*/Exception("Invalid stock"); // error: stock not exist in DB
         }
     }
 
-    private void createProduct(String stockId, Integer productId, Integer available, Integer limit){
+    private void createProduct(String stockId, Long productId, Integer available, Integer limit){
         Integer toPurchase = ((limit-available) < 0) ? 0 : (limit-available);
 
         DBObject listItem = new BasicDBObject("items",
@@ -199,7 +199,7 @@ public class Stock{
         stocks.update(query, new BasicDBObject("$push", listItem));
     }
 
-    private void removeProduct(String stockId, Integer productId){
+    private void removeProduct(String stockId, Long productId){
         BasicDBObject query = new BasicDBObject("_id", new ObjectId(stockId));
 
         BasicDBObject fields = new BasicDBObject("items",
@@ -210,20 +210,20 @@ public class Stock{
         stocks.update( query, update );
     }
 
-    private void updateProductValue(String stockId, Integer productId, String field, Integer value){
+    private void updateProductValue(String stockId, Long productId, String field, Integer value){
         stocks.update(new BasicDBObject("_id", new ObjectId(stockId)).append("items.productId", productId),
                 new BasicDBObject("$set", new BasicDBObject(("items.$." + field), value)));
     }
 
-    private void refreshShoppingList(String stockId) throws ValidationException, ParseException {
-        List<Integer> products = getAllProductsId(stockId);
+    private void refreshShoppingList(String stockId) throws /*ValidationException*/Exception, ParseException {
+        List<Long> products = getAllProductsId(stockId);
 
-        for(Integer product : products){
+        for(Long product : products){
             resetToPurchase(stockId, product);
         }
     }
 
-    private void resetToPurchase(String stockId, Integer productId) throws ValidationException,ParseException {
+    private void resetToPurchase(String stockId, Long productId) throws /*ValidationException*/Exception,ParseException {
         Integer limit = getValueOfProduct(stockId, productId, "limit");
         Integer available = getValueOfProduct(stockId, productId, "available");
 
@@ -237,15 +237,15 @@ public class Stock{
         return (cursor.count() >= 1);
     }
 
-    private boolean is_productId_exist(String stockId, Integer productId){
+    private boolean is_productId_exist(String stockId, Long productId){
         DBCursor cursor = stocks.find(new BasicDBObject("_id", new ObjectId(stockId)).append("items.productId", productId),
                 new BasicDBObject("items", 1));
         return (cursor.count() >= 1 );
     }
 
-    private Integer getValueOfProduct(String stockId, Integer productId, String fieldName) throws ValidationException, ParseException {
+    private Integer getValueOfProduct(String stockId, Long productId, String fieldName) throws /*ValidationException*/Exception, ParseException {
         if (!is_productId_exist(stockId, productId)) {
-            throw new ValidationException("Invalid product");
+            throw new /*ValidationException*/Exception("Invalid product");
         }
 
         DBCursor cursor = stocks.find(new BasicDBObject("_id", new ObjectId(stockId)).append("items.productId", productId),
@@ -263,12 +263,12 @@ public class Stock{
         // iterate queryArray and return the value
         for (Object item : queryArray) {
             JSONObject product = (JSONObject) item;
-            if (Integer.parseInt(product.get("productId").toString()) == productId) {
+            if (Long.parseLong(product.get("productId").toString()) == productId) {
                 return Integer.parseInt(product.get(fieldName).toString());
             }
         }
 
-        throw new ValidationException("Invalid product");
+        throw new /*ValidationException*/Exception("Invalid product");
     }
 }
 
