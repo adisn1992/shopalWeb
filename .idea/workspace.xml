@@ -8,17 +8,14 @@
   <component name="ChangeListManager">
     <list default="true" id="6cb8dac9-a1c6-490a-b163-f84ad5eba89f" name="Default" comment="the server is working!!!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/shopal/shopal.war" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/shopal/shopal.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/shopalWeb/main/java/api/StockRestService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/shopalWeb/main/java/api/StockRestService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shopalData/data/db/WiredTiger.turtle" beforeDir="false" afterPath="$PROJECT_DIR$/shopalData/data/db/WiredTiger.turtle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shopalData/data/db/WiredTiger.wt" beforeDir="false" afterPath="$PROJECT_DIR$/shopalData/data/db/WiredTiger.wt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shopalData/data/db/collection-0--7151823260643090222.wt" beforeDir="false" afterPath="$PROJECT_DIR$/shopalData/data/db/collection-0--7151823260643090222.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shopalData/data/db/collection-5--7151823260643090222.wt" beforeDir="false" afterPath="$PROJECT_DIR$/shopalData/data/db/collection-5--7151823260643090222.wt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shopalData/data/db/diagnostic.data/metrics.interim" beforeDir="false" afterPath="$PROJECT_DIR$/shopalData/data/db/diagnostic.data/metrics.interim" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shopalData/data/db/index-1--7151823260643090222.wt" beforeDir="false" afterPath="$PROJECT_DIR$/shopalData/data/db/index-1--7151823260643090222.wt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shopalData/data/db/index-2--7151823260643090222.wt" beforeDir="false" afterPath="$PROJECT_DIR$/shopalData/data/db/index-2--7151823260643090222.wt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shopalData/data/db/sizeStorer.wt" beforeDir="false" afterPath="$PROJECT_DIR$/shopalData/data/db/sizeStorer.wt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/StockRestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/StockRestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shopalData/doc_DBform.rtf" beforeDir="false" afterPath="$PROJECT_DIR$/shopalData/doc_DBform.rtf" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,9 +48,9 @@
           <entry key="null/shoapl/products" value="6" />
           <entry key="null/shopal/products" value="38" />
           <entry key="null/shopal/shopList" value="43" />
-          <entry key="null/shopal/stocks" value="206" />
+          <entry key="null/shopal/stocks" value="207" />
           <entry key="null/shopal/users" value="11" />
-          <entry key="xml" value="6" />
+          <entry key="xml" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -61,14 +58,14 @@
           <entry key="CLASS" value="7" />
           <entry key="JAVA" value="60" />
           <entry key="JSP" value="2" />
-          <entry key="MONGO" value="304" />
-          <entry key="XML" value="6" />
+          <entry key="MONGO" value="305" />
+          <entry key="XML" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="15" />
-          <entry key="project.open.time.13" value="1" />
+          <entry key="project.closed" value="16" />
+          <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.14" value="2" />
           <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.16" value="1" />
@@ -81,7 +78,7 @@
           <entry key="project.open.time.31" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.47" value="2" />
-          <entry key="project.opened" value="17" />
+          <entry key="project.opened" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -103,8 +100,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/model/Stock.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-440">
-              <caret line="100" lean-forward="true" selection-start-line="100" selection-end-line="100" />
+            <state relative-caret-position="15">
+              <caret line="100" selection-start-line="100" selection-end-line="100" />
               <folding>
                 <element signature="docComment;method#Stock#0;class#Stock#0" />
                 <element signature="method#getStock#0;class#Stock#0" />
@@ -127,10 +124,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="38" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/api/StockRestService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="918">
-              <caret line="173" column="33" selection-start-line="173" selection-start-column="14" selection-end-line="173" selection-end-column="33" />
+            <state relative-caret-position="1830">
+              <caret line="132" selection-start-line="132" selection-end-line="132" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -139,19 +145,9 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="mongo://null/shopal/stocks">
-          <provider selected="true" editor-type-id="MongoData" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="mongo://null/shopal/stocks">
-          <provider selected="true" editor-type-id="MongoData" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/model/Product.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="43">
+            <state relative-caret-position="435">
               <caret line="40" selection-start-line="40" selection-end-line="40" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -262,9 +258,8 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="457" />
-    <option name="y" value="293" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="y" value="25" />
     <option name="width" value="1440" />
     <option name="height" value="805" />
   </component>
@@ -276,29 +271,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="shopalWeb" type="1abcf292:AndroidViewProjectNode" />
-              <item name="shopalWeb" type="e9137016:NonAndroidModuleNode" />
-            </path>
-            <path>
-              <item name="shopalWeb" type="1abcf292:AndroidViewProjectNode" />
-              <item name="shopalWeb" type="e9137016:NonAndroidModuleNode" />
-              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="shopalWeb" type="1abcf292:AndroidViewProjectNode" />
-              <item name="shopalWeb" type="e9137016:NonAndroidModuleNode" />
-              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -338,11 +310,45 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="ui" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="shopalWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="shopalWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shopalWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="shopalWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="shopalWeb" type="1abcf292:AndroidViewProjectNode" />
+              <item name="shopalWeb" type="e9137016:NonAndroidModuleNode" />
+            </path>
+            <path>
+              <item name="shopalWeb" type="1abcf292:AndroidViewProjectNode" />
+              <item name="shopalWeb" type="e9137016:NonAndroidModuleNode" />
+              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="shopalWeb" type="1abcf292:AndroidViewProjectNode" />
+              <item name="shopalWeb" type="e9137016:NonAndroidModuleNode" />
+              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -354,10 +360,10 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538683156474" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Facets" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2632184" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.mongoOptions" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -522,7 +528,8 @@
       <workItem from="1538375282211" duration="8365000" />
       <workItem from="1538404314867" duration="2233000" />
       <workItem from="1538488233770" duration="13250000" />
-      <workItem from="1538683511755" duration="9351000" />
+      <workItem from="1538683511755" duration="10408000" />
+      <workItem from="1538761182662" duration="1560000" />
     </task>
     <task id="LOCAL-00001" summary="the server is working!!!">
       <created>1537516858308</created>
@@ -542,7 +549,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="167099000" />
+    <option name="totallyTimeSpent" value="169716000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -554,10 +561,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="457" y="293" width="1440" height="805" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="25" width="1440" height="805" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17811158" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17811158" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -569,7 +575,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3278856" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.5028986" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.25652173" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.25652173" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3299285" />
@@ -719,13 +725,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/libraries/json_simple_1_1.xml" />
     <entry file="jar://$PROJECT_DIR$/dependencies/json-simple-1.1 copy.jar!/org/json/simple/JSONObject.class" />
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/jre/lib/rt.jar!/sun/reflect/DelegatingMethodAccessorImpl.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -821,36 +820,10 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/model/Verify_GoogleIDToken.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/api/ProductRestService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/Product.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="43">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getImg#0;class#Product#0" />
-            <element signature="method#setProduct#0;class#Product#0" />
-            <element signature="method#validationOfProduct#0;class#Product#0" />
-            <element signature="method#is_productId_existInDB#0;class#Product#0" />
-            <element signature="method#getImagesByListOfProducts#0;class#Product#0" />
-            <element signature="method#getImgByProduct#0;class#Product#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/model/Stock.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-440">
-          <caret line="100" lean-forward="true" selection-start-line="100" selection-end-line="100" />
+        <state relative-caret-position="15">
+          <caret line="100" selection-start-line="100" selection-end-line="100" />
           <folding>
             <element signature="docComment;method#Stock#0;class#Stock#0" />
             <element signature="method#getStock#0;class#Stock#0" />
@@ -873,11 +846,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/api/StockRestService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="918">
-          <caret line="173" column="33" selection-start-line="173" selection-start-column="14" selection-end-line="173" selection-end-column="33" />
+        <state relative-caret-position="1830">
+          <caret line="132" selection-start-line="132" selection-end-line="132" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/Product.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getImg#0;class#Product#0" />
+            <element signature="method#setProduct#0;class#Product#0" />
+            <element signature="method#validationOfProduct#0;class#Product#0" />
+            <element signature="method#is_productId_existInDB#0;class#Product#0" />
+            <element signature="method#getImagesByListOfProducts#0;class#Product#0" />
+            <element signature="method#getImgByProduct#0;class#Product#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/api/ProductRestService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="38" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -959,7 +965,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>jersey-bundle-1.19.1</last-edited>
+          <last-edited>commons-logging-1.1.1</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
