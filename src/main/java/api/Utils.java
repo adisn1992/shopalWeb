@@ -10,6 +10,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -46,23 +47,24 @@ public class Utils {
         return productsId;
     }
 
-    public static String getImgsJson(List<String>  imgList){
-        JSONArray productsArray = new JSONArray();
+    public static String getImgsAndNeamedJson(List<List<String>> imgsAndNames){
+        JSONArray data = new JSONArray();
 
-        // insert each img to productArray
-        for(String img : imgList){
+        Iterator<String> itr_images = imgsAndNames.get(0).iterator();
+        Iterator<String> itr_names = imgsAndNames.get(1).iterator();
 
-            // productImg = {"productImg" : imgUrl}
-            JSONObject productImg = new JSONObject();
-            productImg.put("productImg", img);
-            // insert productImg to productsArray
-            productsArray.add(productImg);
+        while (itr_names.hasNext() && itr_images.hasNext()) {
+            String img = itr_images.next();
+            String name = itr_names.next();
+
+            JSONObject productData = new JSONObject();
+            productData.put("productImg", img);
+            productData.put("productName", name);
+
+            data.add(productData);
         }
 
-        JSONObject res = new JSONObject();
-        res.put("productsImg", productsArray);
-
-        return res.toJSONString();
+        return data.toJSONString();
     }
 
     public static JSONArray getArrayJsonFromJsonByField(JSONObject  jsonObject, String field){

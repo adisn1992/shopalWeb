@@ -4,6 +4,7 @@ import main.java.model.Product;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.xml.bind.ValidationException;
 //import javax.xml.bind.ValidationException;
 
 
@@ -19,7 +20,7 @@ public class ProductRestService {
         try{
             return product.getImg(productId);
         }
-        catch(/*ValidationException*/Exception e){
+        catch(ValidationException e){
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
     }
@@ -30,9 +31,9 @@ public class ProductRestService {
     @Produces(MediaType.TEXT_PLAIN)
     public String getImages(@PathParam("stockId") String stockId) {
         try{
-            return Utils.getImgsJson(product.getImages(stockId));
+            return Utils.getImgsAndNeamedJson(product.getImagesAndNames(stockId));
         }
-        catch(/*ValidationException*/Exception e){
+        catch(ValidationException e){
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
     }

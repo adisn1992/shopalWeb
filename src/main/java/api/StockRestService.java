@@ -1,5 +1,6 @@
 package main.java.api;
 
+import main.java.model.Product;
 import main.java.model.Stock;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -9,12 +10,14 @@ import org.json.simple.parser.ParseException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.xml.bind.ValidationException;
 //import javax.xml.bind.ValidationEvent;
 //import javax.xml.bind.ValidationException;
 
 @Path("/stock")
 public class StockRestService{
     private Stock stock = Stock.getInstanceClass();
+    private Product product = Product.getInstanceClass();
 
     @GET
     @Path("/get/{stockId}")
@@ -24,7 +27,7 @@ public class StockRestService{
         try {
             return stock.getStock(stockId);
         }
-        catch(/*ValidationException*/Exception e){
+        catch(ValidationException e){
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
     }
@@ -37,7 +40,7 @@ public class StockRestService{
         try {
             return stock.getShoppingList(stockId);
         }
-        catch(/*ValidationException*/Exception e){
+        catch(ValidationException e){
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
     }
@@ -57,7 +60,7 @@ public class StockRestService{
             stock.updateProducts(data.get("stockId").toString(), products);
         }
         catch(Exception e){
-            if(e instanceof /*ValidationException*/Exception){
+            if(e instanceof ValidationException){
                 throw new WebApplicationException(Response.Status.BAD_REQUEST);
             }
             else if(e instanceof ParseException){
@@ -81,7 +84,7 @@ public class StockRestService{
             stock.purchaseProducts(data.get("stockId").toString(), products);
         }
         catch(Exception e){
-            if(e instanceof /*ValidationException*/Exception){
+            if(e instanceof ValidationException){
                 throw new WebApplicationException(Response.Status.BAD_REQUEST);
             }
             else if(e instanceof ParseException){
@@ -105,7 +108,7 @@ public class StockRestService{
             stock.removeProductById(stockId, productId);
         }
         catch(Exception e){
-            if(e instanceof /*ValidationException*/Exception){
+            if(e instanceof ValidationException){
                 throw new WebApplicationException(Response.Status.BAD_REQUEST);
             }
             else if(e instanceof ParseException){
@@ -131,9 +134,10 @@ public class StockRestService{
             Integer toPurchase = ((limit - available) <0) ? 0 : (limit - available);
 
             stock.createOrupdateProduct(stockId, productId, available, limit, toPurchase);
+            product.addProduct(productId);
             }
         catch(Exception e){
-            if(e instanceof/*ValidationException*/Exception){
+            if(e instanceof ValidationException){
                 throw new WebApplicationException(Response.Status.BAD_REQUEST);
             }
         }
@@ -154,7 +158,7 @@ public class StockRestService{
             stock.updateAfterScan(stockId, productId);
         }
         catch(Exception e){
-            if(e instanceof /*ValidationException*/Exception){
+            if(e instanceof ValidationException){
                 throw new WebApplicationException(Response.Status.BAD_REQUEST);
             }
             else if(e instanceof ParseException){
@@ -171,7 +175,7 @@ public class StockRestService{
         try {
             return (stock.checkIfProductExistInStock(stockId, productId)) ? "true" : "false";
         }
-        catch(/*ValidationException*/Exception e){
+        catch(ValidationException e){
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
     }

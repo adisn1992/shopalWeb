@@ -6,6 +6,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 //import javax.xml.bind.ValidationException;
+import javax.xml.bind.ValidationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,26 +41,31 @@ public class Product {
     }
 
     //public void addProduct(Integer)
-    public String getImg(Long productId) throws /*ValidationException*/Exception {
+    public String getImg(Long productId) throws ValidationException {
         validationOfProduct(productId);
         return getImgByProduct(productId);
     }
 
-    public List<String> getImages(String stockId) throws /*ValidationException*/Exception {
+    public List<List<String>> getImagesAndNames(String stockId) throws ValidationException {
         List<Long> productsId = stockClass.getAllProductsId(stockId);
-        return  getImagesByListOfProducts(productsId);
+        return  getImagesAndNamesByListOfProducts(productsId);
+    }
+
+    //TODO give name of product here
+    public void addProduct(Long productId){
+        setProduct(productId);
     }
 
 
 /** Private: **/
-
-    public void setProduct(){
-        // TODO
+    public void setProduct(Long productId){
+        BasicDBObject doc = new BasicDBObject("barcode", productId).append("name", "").append("img", "");
+        products.insert(doc);
     }
 
-    private void validationOfProduct(Long productId) throws /*ValidationException*/Exception{
+    private void validationOfProduct(Long productId) throws ValidationException{
         if (!is_productId_existInDB(productId)) {
-            throw new /*ValidationException*/Exception("Invalid product"); // error: stock not exist in DB
+            throw new ValidationException("Invalid product"); // error: stock not exist in DB
         }
     }
 
@@ -68,17 +74,27 @@ public class Product {
         return (cursor.count() >= 1 ) ? true : false;
     }
 
-    private List<String> getImagesByListOfProducts(List<Long> productsId) {
-        List<String> images = new ArrayList<String>();
+    private List<List<String>> getImagesAndNamesByListOfProducts(List<Long> productsId) {
+        List<List<String>> res = new ArrayList<>();
+        List<String> images = new ArrayList<>();
+        List<String> names = new ArrayList<>();
+
 
         for(Long id: productsId){
             if(is_productId_existInDB(id)) {
+                // add img to images
                 String img = getImgByProduct(id);
                 images.add(img);
+                // add name to names
+                String name = getNameByProduct(id);
+                names.add(name);
             }
         }
 
-        return images;
+        res.add(images);
+        res.add(names);
+
+        return res;
     }
 
     private String getImgByProduct(Long productId) {
@@ -89,12 +105,26 @@ public class Product {
             BasicDBObject curr = (BasicDBObject) cursor.next();
             Img  = curr.get("img").toString();
         }
-        catch(/*ValidationException*/Exception e){
-            // adi: if (Img == null) -> default pic
-
+        catch(ValidationException e){
+            Img = "NOT_EXISTS_IN_PRODUCTS_COLLECTION";
         }
 
         return Img;
+    }
+
+    private String getNameByProduct(Long productId) {
+        String name = null;
+        try{
+            validationOfProduct(productId);
+            DBCursor cursor = products.find(new BasicDBObject("barcode", productId));
+            BasicDBObject curr = (BasicDBObject) cursor.next();
+            name  = curr.get("name").toString();
+        }
+        catch(ValidationException e){
+            name = "NOT_EXISTS_IN_PRODUCTS_COLLECTION";
+        }
+
+        return name;
     }
 }
 
