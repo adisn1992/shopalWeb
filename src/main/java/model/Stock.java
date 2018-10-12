@@ -172,7 +172,7 @@ public class Stock{
 /** Private: **/
     // TODO: to check method
     private String createStock(String name) {
-        BasicDBObject doc = new BasicDBObject("name", name).append("items", null);
+        BasicDBObject doc = new BasicDBObject("name", name).append("items", new ArrayList<>());
         stocks.insert(doc);
         ObjectId id = (ObjectId)doc.get( "_id" );
 

@@ -53,7 +53,9 @@ public class Product {
 
     //TODO give name of product here
     public void addProduct(Long productId){
-        setProduct(productId);
+        if(!is_productId_existInDB(productId)){
+            setProduct(productId);
+        }
     }
 
 
