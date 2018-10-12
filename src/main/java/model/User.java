@@ -1,115 +1,107 @@
 package main.java.model;
 
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.jackson2.JacksonFactory;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
+import com.mongodb.*;
+import org.bson.types.ObjectId;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
-import java.util.Collections;
-
-import static com.mongodb.client.model.Filters.eq;
-
-//import com.google.api.client.json.jackson2.JacksonFactory;
+//import javax.xml.bind.ValidationException;
+import javax.xml.bind.ValidationException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Created by user on 14/04/2018.
+ * Created by user on 12/04/2018.
  */
+
+// email is a unique key for user
 public class User {
-    public static final String CLIENT_ID = "901407414554-dtnv2raqv7f2o5d2v4585moboaem5c55.apps.googleusercontent.com";
-    private static final HttpTransport transport = new NetHttpTransport();
-    private static final JacksonFactory jsonFactory = new JacksonFactory();
-    GoogleIdTokenVerifier verifier;
-    private MongoCollection<Document> users;
+    private static User ourInstance = new User();
+    private static DBCollection users;
+    private static Stock stockClass =  Stock.getInstanceClass();
 
-    /**
-     * Public:
-     **/
-    public User(MongoDatabase database) {
-        // connect to DB collection: users
+    /** Public: **/
+    public User()
+    {
+        // connect to mongo
+        MongoClient mongoClient = new MongoClient("Localhost", 27017);
+        // get DB
+        DB database = mongoClient.getDB("shopal");
+        // get collection
         users = database.getCollection("users");
-        // Create google idToken verifier
-        verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
-                // Specify the CLIENT_ID of the app that accesses the backend:
-                .setAudience(Collections.singletonList(CLIENT_ID)) //** check the correct client_id
-                .build();
     }
 
-    public void connectUser(String idTokenString) {  // TODO (Receive idTokenString by HTTPS POST)
-        try {
-            // verify and create Payload
-            GoogleIdToken idToken = verifier.verify(idTokenString);
-            Payload payload = idToken.getPayload();
-            String userId = payload.getUserId();
+    public static DBCollection getInstanceCollection() {
+        return ourInstance.users;
+    }
 
-            if (!is_userId_existInDB(userId)) {
-                addUser(payload); // new user
-            }
+    public static User getInstanceClass() {
+        return ourInstance;
+    }
 
-        } catch (Exception e) {
-            System.out.println("Invalid idToken :   " + e.getMessage());
+    public String addUserAndGetStockId(String firstName, String lastName, String email) throws ValidationException {
+        if(is_user_existInDB(email)){
+            throw new ValidationException("User already exists");
         }
+        String stockId =  stockClass.newStock(email);
+        setUser(email, firstName, lastName, stockId);
+
+        return stockId;
     }
 
-    /**
-     * Private:
-     **/
-
-    private void addUser(Payload payload) {
-        // Get profile information from payload
-        String email = payload.getEmail();
-        String userId = payload.getUserId();
-        //// boolean emailVerified = Boolean.valueOf(payload.getEmailVerified()); // TODO check for what
-
-        String name = (String) payload.get("name");
-        String familyName = (String) payload.get("family_name");
-        String givenName = (String) payload.get("given_name");
-        String pictureUrl = (String) payload.get("picture");
-
-        users.insertOne(new Document("userId", userId)
-                .append("email", email)
-                .append("name", name)
-                .append("familyName", familyName)
-                .append("givenName", givenName)
-                .append("pictureUrl", pictureUrl)
-                .append("stockId", "NO STOCKS")
-        );
-    }
-
-
-    private boolean is_userId_existInDB(String userId) {
-        boolean res = true;
-        Document doc = users.find(eq("userId", userId)).first();
-
-        if (doc == null) {
-            res = false;
+    public String getValue(String email, String fieldName) throws ValidationException {
+        if (!is_user_existInDB(email)) {
+            throw new ValidationException("Invalid user");
         }
 
-        return res;
+        return getValueFromUser(email, fieldName);
+    }
+
+    public void setValue(String email, String fieldName, String newValue) throws ValidationException {
+        if (!is_user_existInDB(email)) {
+            throw new ValidationException("Invalid user");
+        }
+
+        setValueFromUser(email, fieldName, newValue);
     }
 
 
-    /**
-     * public String getUserName() {
-     * return userName;
-     * }
-     * <p>
-     * public void setUserName(String userName) {
-     * this.userName = userName;
-     * }
-     * <p>
-     * public String getEmailAdress() {
-     * <p>
-     * return emailAdress;
-     * }
-     * <p>
-     * public void setEmailAdress(String emailAdress) {
-     * this.emailAdress = emailAdress;
-     * }
-     */
+    /** Private: **/
+    private void setUser(String email, String firstName, String lastName, String stockId){
+        BasicDBObject doc = new BasicDBObject("email", email)
+                .append("firstName", firstName)
+                .append("lastName", lastName)
+                .append("stockId", stockId);
+
+        users.insert(doc);
+    }
+
+    private boolean is_user_existInDB(String email) {
+        DBCursor cursor = users.find(new BasicDBObject("email", email));
+        return (cursor.count() >= 1);
+    }
+
+    private String getValueFromUser(String email, String fieldName){
+        DBCursor cursor = users.find(new BasicDBObject("email", email));
+        BasicDBObject user = (BasicDBObject) cursor.next();
+
+        return user.getString(fieldName);
+    }
+
+    private void setValueFromUser(String email, String fieldName, String newValue){
+        users.update(new BasicDBObject("email", email),
+                new BasicDBObject("$set", new BasicDBObject((fieldName), newValue)));
+    }
 
 }
+
+
+
+
+
+
+
+
+
+

@@ -43,7 +43,7 @@ public class Engine {
         // Access to shopalDB
         a = mongoClient.getDatabase("shopal");
         stocks = new Stock();
-        users = new User(a);
+        users = new User();
 
 
         // EXP
