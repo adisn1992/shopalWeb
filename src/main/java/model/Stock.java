@@ -1,33 +1,29 @@
 package main.java.model;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-//import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
+
 import main.java.api.Utils;
-import org.json.*;
+
 import com.mongodb.*;
+
 import org.bson.types.ObjectId;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-//import javax.xml.bind.ValidationException;
 import javax.xml.bind.ValidationException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 
-//TODO look for throw kinds
 public class Stock{
     // should be one instance of stock class and stocks collection
-    public static final int NO_CHANGE = -1;
     private static Stock ourInstance = new Stock();
     private static DBCollection stocks;
 
+    public static final int NO_CHANGE = -1;
 
 /** Public: **/
-    // listActivity = shopping list activity
     public Stock()
     {
         // connect to mongo
@@ -91,7 +87,6 @@ public class Stock{
             updateProductValue(stockId, productId, "limit", Integer.parseInt(product.get("limit").toString()));
         }
 
-
         refreshShoppingList(stockId);
     }
 
@@ -100,7 +95,6 @@ public class Stock{
         return Utils.getProductsId(stockId, stocks);
     }
 
-    // adi: increase available
     public void purchaseProducts(String stockId , JSONArray products) throws ValidationException, ParseException  {
         validationOfStock(stockId);
 
@@ -127,17 +121,16 @@ public class Stock{
         validationOfStock(stockId);
 
         if (!is_productId_exist(stockId, productId)) {
-            //throw new Exception("product doesn't exist in stock"); // productId not exist in DB
+            throw new ValidationException("product doesn't exist in stock"); // error: stock not exist in DB
         }
 
-        // getting the available quantity of products:
+        // get available quantity
         Integer available = getValueOfProduct(stockId, productId, "available");
-        Integer limit = getValueOfProduct(stockId, productId, "limit");
-
-        // update product :
+        // available = available - 1
         available = ((available-1) < 0) ? 0 : (available-1);
-
+        // update available
         updateProductValue(stockId, productId, "available", available);
+        // reset shopping list
         resetToPurchase(stockId, productId);
     }
 
@@ -169,20 +162,11 @@ public class Stock{
 
         return is_productId_exist(stockId, productId);
     }
+
 /** Private: **/
-    // TODO: to check method
-    private String createStock(String name) {
-        BasicDBObject doc = new BasicDBObject("name", name).append("items", new ArrayList<>());
-        stocks.insert(doc);
-        ObjectId id = (ObjectId)doc.get( "_id" );
-
-        return id.toString();
-    }
-
-    // TODO: to check method
     private void validationOfStock(String stockId) throws ValidationException {
         if (!is_stockId_existInDB(stockId)) {
-            throw new ValidationException("Invalid stock"); // error: stock not exist in DB
+            throw new ValidationException("Invalid stock");
         }
     }
 
@@ -244,6 +228,14 @@ public class Stock{
         return (cursor.count() >= 1 );
     }
 
+    private String createStock(String name) {
+        BasicDBObject doc = new BasicDBObject("name", name).append("items", new ArrayList<>());
+        stocks.insert(doc);
+        ObjectId id = (ObjectId)doc.get( "_id" );
+
+        return id.toString();
+    }
+
     private Integer getValueOfProduct(String stockId, Long productId, String fieldName) throws ValidationException, ParseException {
         if (!is_productId_exist(stockId, productId)) {
             throw new ValidationException("Invalid product");
@@ -274,46 +266,5 @@ public class Stock{
 }
 
 
-
-// TODO don't delete it!
-
-
-    /*
-    public List<Integer> getAllProductsId_listActivity(String stockId) throws Exception {
-        validationOfStock(stockId);
-        List<Integer> products = getAllProductsId_stockActivity(stockId);
-
-        Iterator<Integer> iter = products.iterator();
-        while (iter.hasNext()) {
-            Integer product = iter.next(); // must be called before you can call i.remove()
-            if(!is_productId_existInShopList(stockId, (Integer)product)){
-                iter.remove();
-            }
-        }
-
-        return products;
-    }
-
-
-      public void deleteStockById(String stockId) throws Exception {
-        validationOfStock(stockId);
-        deleteStock(stockId);
-    }
-
-
-    public static DBCollection getInstanceCollection() {
-        return ourInstance.stocks;
-    }
-
-
-    private void deleteStock(String stockId){
-        stocks.remove(new BasicDBObject("_id", new ObjectId(stockId)));
-    }
-
-
-    private boolean is_productId_existInShopList(String stockId, Integer productId){//} throws Exception {
-       // return (getValueOfProduct(stockId, productId, "toPurchase") > 0 );
-    }
-    */
 
 

@@ -17,7 +17,6 @@ import java.util.List;
  * Created by user on 05/05/2018.
  */
 
-
 public class Utils {
 
     public static List<Long> getProductsId(String id, DBCollection collection){
@@ -66,36 +65,6 @@ public class Utils {
 
         return data.toJSONString();
     }
-
-    public static JSONArray getArrayJsonFromJsonByField(JSONObject  jsonObject, String field){
-        JSONParser parser = new JSONParser();
-        JSONArray products = null;
-
-        try {
-            products = (JSONArray) parser.parse(jsonObject.get(field).toString());
-        }
-        catch(Exception e){
-            // adi: handle exception
-        }
-
-        return products;
-    }
-
-    public static JSONObject stringToJson(String str){
-        JSONParser parser = new JSONParser();
-        JSONObject json = null;
-
-        try {
-            json = (JSONObject) parser.parse(str);
-        }
-        catch(Exception e){
-            // adi: handle exception
-        }
-
-        return json;
-    }
-
-
 }
 
 

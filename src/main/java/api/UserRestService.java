@@ -10,7 +10,6 @@ import javax.xml.bind.ValidationException;
 public class UserRestService {
     private User user = User.getInstanceClass();
 
-    // if the user already exists in DB then instead of stockId you will get "User already exists" string - you can check it in the UI
     @GET
     @Path("/addUser/{firstName}/{lastName}/{email}/")
     @Consumes(MediaType.TEXT_PLAIN)

@@ -1,15 +1,7 @@
 package main.java.model;
 
 import com.mongodb.*;
-import org.bson.types.ObjectId;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
-//import javax.xml.bind.ValidationException;
 import javax.xml.bind.ValidationException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by user on 12/04/2018.
@@ -21,7 +13,7 @@ public class User {
     private static DBCollection users;
     private static Stock stockClass =  Stock.getInstanceClass();
 
-    /** Public: **/
+/** Public: **/
     public User()
     {
         // connect to mongo
@@ -30,10 +22,6 @@ public class User {
         DB database = mongoClient.getDB("shopal");
         // get collection
         users = database.getCollection("users");
-    }
-
-    public static DBCollection getInstanceCollection() {
-        return ourInstance.users;
     }
 
     public static User getInstanceClass() {
@@ -58,16 +46,7 @@ public class User {
         return getValueFromUser(email, fieldName);
     }
 
-    public void setValue(String email, String fieldName, String newValue) throws ValidationException {
-        if (!is_user_existInDB(email)) {
-            throw new ValidationException("Invalid user");
-        }
-
-        setValueFromUser(email, fieldName, newValue);
-    }
-
-
-    /** Private: **/
+/** Private: **/
     private void setUser(String email, String firstName, String lastName, String stockId){
         BasicDBObject doc = new BasicDBObject("email", email)
                 .append("firstName", firstName)
@@ -88,12 +67,6 @@ public class User {
 
         return user.getString(fieldName);
     }
-
-    private void setValueFromUser(String email, String fieldName, String newValue){
-        users.update(new BasicDBObject("email", email),
-                new BasicDBObject("$set", new BasicDBObject((fieldName), newValue)));
-    }
-
 }
 
 

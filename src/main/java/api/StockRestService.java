@@ -11,8 +11,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.xml.bind.ValidationException;
-//import javax.xml.bind.ValidationEvent;
-//import javax.xml.bind.ValidationException;
 
 @Path("/stock")
 public class StockRestService{
@@ -171,7 +169,7 @@ public class StockRestService{
     @Path("/isProductExistInStock/{stockId}/{productId}")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.TEXT_PLAIN)
-    public String getStock(@PathParam("stockId") String stockId, @PathParam("productId") Long productId) {
+    public String isProductExistInStock(@PathParam("stockId") String stockId, @PathParam("productId") Long productId) {
         try {
             return (stock.checkIfProductExistInStock(stockId, productId)) ? "true" : "false";
         }
@@ -180,32 +178,3 @@ public class StockRestService{
         }
     }
 }
-
-
-
-
-
-    /*
-    //adi: should be post
-    @GET
-    @Path("/newProduct/{stockId}/{productId}")
-    @Consumes(MediaType.TEXT_PLAIN)
-    @Produces(MediaType.TEXT_PLAIN)
-    public String addProduct(@PathParam("stockId") String stockId, @PathParam("productId") Integer productId) throws Exception{
-        stock.createOrupdateProduct(stockId, productId, 1, 0 );
-        return "adi";
-        // adi: return
-    }
-
-    //adi: should be post
-    @GET
-    @Path("/updateOrCreateProduct/{stockId}/{productId}/{available}/{limit}")
-    @Consumes(MediaType.TEXT_PLAIN)
-    @Produces(MediaType.TEXT_PLAIN)
-    public String addProduct(@PathParam("stockId") String stockId, @PathParam("productId") Integer productId,
-                             @PathParam("available") Integer available,@PathParam("limit") Integer limit) throws Exception{
-        stock.createOrupdateProduct(stockId, productId, available, limit );
-        return "adi";
-        // adi: return
-    }
-    */

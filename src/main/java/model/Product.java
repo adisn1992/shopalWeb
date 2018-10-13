@@ -1,11 +1,7 @@
 package main.java.model;
 
 import com.mongodb.*;
-import org.bson.types.ObjectId;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
-//import javax.xml.bind.ValidationException;
 import javax.xml.bind.ValidationException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,15 +28,10 @@ public class Product {
         products = database.getCollection("products");
     }
 
-    public static DBCollection getInstanceCollection() {
-        return ourInstance.products;
-    }
-
     public static Product getInstanceClass() {
         return ourInstance;
     }
 
-    //public void addProduct(Integer)
     public String getImg(Long productId) throws ValidationException {
         validationOfProduct(productId);
         return getImgByProduct(productId);
@@ -51,14 +42,12 @@ public class Product {
         return  getImagesAndNamesByListOfProducts(productsId);
     }
 
-    //TODO give name of product here
     public void addProduct(Long productId){
         if(!is_productId_existInDB(productId)){
             setProduct(productId);
         }
     }
-
-
+    
 /** Private: **/
     public void setProduct(Long productId){
         BasicDBObject doc = new BasicDBObject("barcode", productId).append("name", "").append("img", "");
