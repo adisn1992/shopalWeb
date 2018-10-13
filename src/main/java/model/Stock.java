@@ -95,6 +95,11 @@ public class Stock{
         return Utils.getProductsId(stockId, stocks);
     }
 
+    public List<Long> getAllProductsId_shoppingList(String stockId) throws ValidationException {
+        validationOfStock(stockId);
+        return getProductsId_shoppingList(stockId);
+    }
+
     public void purchaseProducts(String stockId , JSONArray products) throws ValidationException, ParseException  {
         validationOfStock(stockId);
 
@@ -164,6 +169,27 @@ public class Stock{
     }
 
 /** Private: **/
+    private List<Long> getProductsId_shoppingList(String stockId){
+        try {
+            JSONParser parser = new JSONParser();
+
+            List<Long> productIdList = new ArrayList<>();
+            JSONObject shoppingList = (JSONObject) parser.parse(getShoppingList(stockId));
+            JSONArray items = (JSONArray) parser.parse(shoppingList.get("items").toString());
+
+
+            for (Object item : items) {
+                JSONObject product = (JSONObject) item;
+                productIdList.add(Long.parseLong(product.get("productId").toString()));
+            }
+
+            return productIdList;
+        }
+        catch(Exception e){
+            return null;
+        }
+    }
+
     private void validationOfStock(String stockId) throws ValidationException {
         if (!is_stockId_existInDB(stockId)) {
             throw new ValidationException("Invalid stock");

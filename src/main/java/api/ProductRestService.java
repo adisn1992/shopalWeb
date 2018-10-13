@@ -1,6 +1,8 @@
 package main.java.api;
 
 import main.java.model.Product;
+import main.java.model.Stock;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -36,4 +38,18 @@ public class ProductRestService {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
     }
+
+    @GET
+    @Path("/getImgsToShoppingList/{stockId}")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getImgsToShoppingList(@PathParam("stockId") String stockId) {
+        try{
+            return Utils.getImgsAndNeamedJson(product.getImagesAndNames_shoppingList(stockId));
+        }
+        catch(ValidationException e){
+            throw new WebApplicationException(Response.Status.BAD_REQUEST);
+        }
+    }
+
 }

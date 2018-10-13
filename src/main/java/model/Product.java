@@ -42,6 +42,12 @@ public class Product {
         return  getImagesAndNamesByListOfProducts(productsId);
     }
 
+    public List<List<String>>getImagesAndNames_shoppingList(String stockId) throws ValidationException {
+
+        List<Long> productsId = stockClass.getAllProductsId_shoppingList(stockId);
+        return  getImagesAndNamesByListOfProducts(productsId);
+    }
+
     public void addProduct(Long productId){
         if(!is_productId_existInDB(productId)){
             setProduct(productId);
